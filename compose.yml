@@ -3,10 +3,10 @@ services:
     image: ghcr.io/dandrzejewski/dvmhost:latest
     volumes:
       # TODO Generalize this
-      - ${CONFIG_DIR}/configCC.yml:/opt/centrunk/configs/dvmhost.yml:ro
-      - ${CONFIG_DIR}/iden_table.dat:/opt/centrunk/configs/iden_table.dat:ro
-      - ${CONFIG_DIR}/rid_acl.dat:/opt/centrunk/configs/rid_acl.dat:ro
-      - ${CONFIG_DIR}/tg_acl.dat:/opt/centrunk/configs/tg_acl.dat:ro
+      - ${CONFIG_DIR}/configCC.yml:/config/dvmhost.yml:ro
+      - ${CONFIG_DIR}/iden_table.dat:/config/iden_table.dat:ro
+      - ${CONFIG_DIR}/rid_acl.dat:/config/rid_acl.dat:ro
+      - ${CONFIG_DIR}/tg_acl.dat:/config/tg_acl.dat:ro
     devices:
       - ${CC_DEVICE}:${CC_DEVICE}
     group_add:
@@ -17,10 +17,10 @@ services:
     image: ghcr.io/dandrzejewski/dvmhost:latest
     volumes:
       # TODO Generalize this
-      - ${CONFIG_DIR}/configVC.yml:/opt/centrunk/configs/dvmhost.yml:ro
-      - ${CONFIG_DIR}/iden_table.dat:/opt/centrunk/configs/iden_table.dat:ro
-      - ${CONFIG_DIR}/rid_acl.dat:/opt/centrunk/configs/rid_acl.dat:ro
-      - ${CONFIG_DIR}/tg_acl.dat:/opt/centrunk/configs/tg_acl.dat:ro
+      - ${CONFIG_DIR}/configVC.yml:/config/dvmhost.yml:ro
+      - ${CONFIG_DIR}/iden_table.dat:/config/iden_table.dat:ro
+      - ${CONFIG_DIR}/rid_acl.dat:/config/rid_acl.dat:ro
+      - ${CONFIG_DIR}/tg_acl.dat:/config/tg_acl.dat:ro
     devices:
       - ${VC_DEVICE}:${VC_DEVICE}
     group_add:

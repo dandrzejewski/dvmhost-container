@@ -29,6 +29,7 @@ FROM debian:bookworm-slim AS runtime
 
 RUN apt update && apt install -y libssl-dev
 
+RUN mkdir /config
 COPY --from=builder /build/dvmhost/build/dvmhost /usr/local/bin/
-CMD ["/usr/local/bin/dvmhost", "-f", "-c", "/opt/centrunk/configs/dvmhost.yml"]
+CMD ["/usr/local/bin/dvmhost", "-f", "-c", "/config/dvmhost.yml"]
 

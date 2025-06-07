@@ -12,6 +12,17 @@ You'll need a complete set of dvmhost configs in a folder:
 * configCC.yml  (dvmhost config for your control channel)
 * configVC.yml  (dvmhost config for your voice channel)
 
+Make sure your config YMLs point to /config for iden_table.dat, rid_acl.dat and tg_acl.dat:
+
+```yaml
+  iden_table:
+    file: /config/iden_table.dat
+  radio_id:
+    file: /config/rid_acl.dat
+  talkgroup_id:
+    file: /config/tg_acl.yml
+```
+
 Clone the repo.
 
 Set up a `.env` file in the cloned repo:
