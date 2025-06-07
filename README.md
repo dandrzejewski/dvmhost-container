@@ -23,15 +23,6 @@ VC_DEVICE=/dev/ttyUSB0
 
 Set CONFIG_DIR to the location of your config files, and set the devices to the appropriate dvm devices.
 
-
-```bash
-cd dvmhost-docker
-docker build -t dvmhost:latest .
-cd ..
-```
-
-Make sure the `devices` sections are correct for your hardware, and make sure the volume mounts for the configs match your configs.
-
 Then start it up:
 
 ```bash
