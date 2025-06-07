@@ -11,9 +11,10 @@ services:
       - /dev/ttyAMA0:/dev/ttyAMA0
     group_add:
       - dialout
+    restart: unless-stopped
 
   dvmhost-voice:
-    image: dvmhost
+    image: dvmhost:latest
     volumes:
       # TODO Generalize this
       - /opt/centrunk/configs/configVC.yml:/opt/centrunk/configs/dvmhost.yml:ro
@@ -24,3 +25,4 @@ services:
       - /dev/ttyUSB0:/dev/ttyUSB0
     group_add:
       - dialout
+    restart: unless-stopped
