@@ -1,0 +1,26 @@
+services:
+  dvmhost-control:
+    image: dvmhost:latest
+    volumes:
+      # TODO Generalize this
+      - /opt/centrunk/configs/configCC.yml:/opt/centrunk/configs/dvmhost.yml:ro
+      - /opt/centrunk/configs/iden_table.dat:/opt/centrunk/configs/iden_table.dat:ro
+      - /opt/centrunk/configs/rid_acl.dat:/opt/centrunk/configs/rid_acl.dat:ro
+      - /opt/centrunk/configs/tg_acl.dat:/opt/centrunk/configs/tg_acl.dat:ro
+    devices:
+      - /dev/ttyAMA0:/dev/ttyAMA0
+    group_add:
+      - dialout
+
+  dvmhost-voice:
+    image: dvmhost
+    volumes:
+      # TODO Generalize this
+      - /opt/centrunk/configs/configVC.yml:/opt/centrunk/configs/dvmhost.yml:ro
+      - /opt/centrunk/configs/iden_table.dat:/opt/centrunk/configs/iden_table.dat:ro
+      - /opt/centrunk/configs/rid_acl.dat:/opt/centrunk/configs/rid_acl.dat:ro
+      - /opt/centrunk/configs/tg_acl.dat:/opt/centrunk/configs/tg_acl.dat:ro
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    group_add:
+      - dialout
