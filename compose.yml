@@ -1,28 +1,28 @@
 services:
   dvmhost-control:
-    image: dvmhost:latest
+    image: ghcr.io/dandrzejewski/dvmhost:latest
     volumes:
       # TODO Generalize this
-      - /opt/centrunk/configs/configCC.yml:/opt/centrunk/configs/dvmhost.yml:ro
-      - /opt/centrunk/configs/iden_table.dat:/opt/centrunk/configs/iden_table.dat:ro
-      - /opt/centrunk/configs/rid_acl.dat:/opt/centrunk/configs/rid_acl.dat:ro
-      - /opt/centrunk/configs/tg_acl.dat:/opt/centrunk/configs/tg_acl.dat:ro
+      - ${CONFIG_DIR}/configCC.yml:/opt/centrunk/configs/dvmhost.yml:ro
+      - ${CONFIG_DIR}/iden_table.dat:/opt/centrunk/configs/iden_table.dat:ro
+      - ${CONFIG_DIR}/rid_acl.dat:/opt/centrunk/configs/rid_acl.dat:ro
+      - ${CONFIG_DIR}/tg_acl.dat:/opt/centrunk/configs/tg_acl.dat:ro
     devices:
-      - /dev/ttyAMA0:/dev/ttyAMA0
+      - ${CC_DEVICE}:${CC_DEVICE}
     group_add:
       - dialout
     restart: unless-stopped
 
   dvmhost-voice:
-    image: dvmhost:latest
+    image: ghcr.io/dandrzejewski/dvmhost:latest
     volumes:
       # TODO Generalize this
-      - /opt/centrunk/configs/configVC.yml:/opt/centrunk/configs/dvmhost.yml:ro
-      - /opt/centrunk/configs/iden_table.dat:/opt/centrunk/configs/iden_table.dat:ro
-      - /opt/centrunk/configs/rid_acl.dat:/opt/centrunk/configs/rid_acl.dat:ro
-      - /opt/centrunk/configs/tg_acl.dat:/opt/centrunk/configs/tg_acl.dat:ro
+      - ${CONFIG_DIR}/configVC.yml:/opt/centrunk/configs/dvmhost.yml:ro
+      - ${CONFIG_DIR}/iden_table.dat:/opt/centrunk/configs/iden_table.dat:ro
+      - ${CONFIG_DIR}/rid_acl.dat:/opt/centrunk/configs/rid_acl.dat:ro
+      - ${CONFIG_DIR}/tg_acl.dat:/opt/centrunk/configs/tg_acl.dat:ro
     devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
+      - ${VC_DEVICE}:${VC_DEVICE}
     group_add:
       - dialout
     restart: unless-stopped
