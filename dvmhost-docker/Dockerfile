@@ -22,10 +22,12 @@ FROM setup AS builder
 
 WORKDIR /build/dvmhost/build
 RUN cmake -DENABLE_TUI_SUPPORT=0 ..
-RUN make -j$(($(nproc) / 2)) dvmhost
+
+# Run make, multi-threaded and use half the number of CPUs.
+RUN make -j$(($(nproc) / 2)) dvmhost dvmfne
 
 # ---- Slim down and build the final image ----
-FROM debian:bookworm-slim AS runtime
+FROM debian:bookworm-slim AS dvmhost
 
 RUN apt update && apt install -y libssl-dev
 
@@ -33,3 +35,10 @@ RUN mkdir /config
 COPY --from=builder /build/dvmhost/build/dvmhost /usr/local/bin/
 CMD ["/usr/local/bin/dvmhost", "-f", "-c", "/config/dvmhost.yml"]
 
+
+FROM debian:bookworm-slim AS dvmfne
+
+RUN apt update && apt install -y libssl-dev
+RUN mkdir /config
+COPY --from=builder /build/dvmhost/build/dvmfne /usr/local/bin/
+CMD ["/usr/local/bin/dvmfne", "-f", "-c", "/config/dvmfne.yml"]
