@@ -13,7 +13,7 @@ FROM os AS setup
 
 RUN mkdir /build
 WORKDIR /build
-RUN git --single-branch --branch r04j32_dev clone https://github.com/DVMProject/dvmhost.git
+RUN git clone --branch r04j32_dev https://github.com/DVMProject/dvmhost.git
 WORKDIR /build/dvmhost
 RUN mkdir build
 
